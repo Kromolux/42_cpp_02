@@ -1,0 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/16 15:46:33 by rkaufman          #+#    #+#             */
+/*   Updated: 2022/05/16 16:07:51 by rkaufman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+#include "Fixed.hpp"
+
+Fixed::Fixed(void)
+{
+	std::cout << "default constructor called\n";
+	this->_value = 0;
+}
+
+Fixed::Fixed(Fixed const & input)
+{
+	std::cout << "copy constructor called\n";
+	this->_value = input.getRawBits();
+}
+
+Fixed::Fixed(int const input)
+{
+	std::cout << "int constructor called\n";
+	this->_value = input;
+}
+
+Fixed::Fixed(float const input)
+{
+	std::cout << "float constructor called\n";
+	this->_value = (int) input;
+}
+
+Fixed::~Fixed(void)
+{
+	std::cout << "deconstructor called\n";
+}
+
+int	Fixed::getRawBits(void) const
+{
+	//std::cout << "getRawBits function called\n";
+	return (this->_value);
+}
+
+void	Fixed::setRawBits(int const raw)
+{
+	//std::cout << "setRawBits function called\n";
+	this->_value = raw;
+}
+
+Fixed & Fixed::operator=(Fixed const & input)
+{
+	std::cout << "assignment operator function called\n";
+	this->_value = input.getRawBits();
+	return (*this);
+}
+
+std::ostream & operator<<(std::ostream & o, Fixed const & input)
+{
+	o << input.getRawBits();
+	return (o);
+}
+
+float	Fixed::toFloat( void ) const
+{
+	return (0);
+}
+
+int		Fixed::toInt( void ) const
+{
+	return (this->_value);
+}
