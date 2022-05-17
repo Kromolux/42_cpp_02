@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 15:46:59 by rkaufman          #+#    #+#             */
-/*   Updated: 2022/05/17 10:21:34 by rkaufman         ###   ########.fr       */
+/*   Created: 2022/05/17 12:51:28 by rkaufman          #+#    #+#             */
+/*   Updated: 2022/05/17 13:22:28 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,38 @@ public:
 
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
-	Fixed & operator=(Fixed const & input);
+	Fixed &			operator=(Fixed & input);
+	Fixed const &	operator=(Fixed const & input);
+
+	
+	bool	operator>(Fixed const & input) const;
+	bool	operator<(Fixed const & input) const;
+	bool	operator>=(Fixed const & input) const;
+	bool	operator<=(Fixed const & input) const;
+	bool	operator==(Fixed const & input) const;
+	bool	operator!=(Fixed const & input) const;
+	
+	Fixed	operator+(Fixed const & input) const;
+	Fixed	operator-(Fixed const & input) const;
+	Fixed	operator*(Fixed const & input) const;
+	Fixed	operator/(Fixed const & input) const;
+
+	Fixed	operator++(void);
+	Fixed	operator++(int);
+	Fixed	operator--(void);
+	Fixed	operator--(int);
 	
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 
+	static Fixed & min(Fixed & input1, Fixed & input2);
+	static Fixed const & min(Fixed const & input1, Fixed const & input2);
+	static Fixed & max(Fixed & input1, Fixed & input2);
+	static Fixed const & max(Fixed const & input1, Fixed const & input2);
+
 private:
 
-	int	_value;
+	int					_value;
 	static int const	_digits = 8;
 
 };
